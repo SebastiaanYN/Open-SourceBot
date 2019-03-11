@@ -2,7 +2,7 @@
 An open source bot project from TheSourceCode!
 
 <div align="center">
-  <p>
+  <p>Join our Discord Community!
     <a href="https://discord.gg/jkAzNyB"><img src="https://discordapp.com/api/guilds/265499275088232448/embed.png?style=banner2" alt="Discord Server" /></a>
   </p>
 </div>
