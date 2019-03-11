@@ -6,8 +6,6 @@
   </p>
 </div>
 
-![](https://avatars2.githubusercontent.com/u/24659713?s=460&v=4);
-
 ## Contributing 📝
 If you want to contibute to this project you can follow the steps below.
 You can always [open an issue](https://github.com/The-SourceCode/Open-SourceBot/issues/new) and share your ideas!
