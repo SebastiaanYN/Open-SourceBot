@@ -1,7 +1,6 @@
 # Open-SourceBot 🤖
-An open source bot project from TheSourceCode!
-
 <div align="center">
+  <p>An open source bot project from TheSourceCode!</p>
   <p>Join our Discord Community!</p><p>
     <a href="https://discord.gg/jkAzNyB"><img src="https://discordapp.com/api/guilds/265499275088232448/embed.png?style=banner2" alt="Discord Server" /></a>
   </p>
