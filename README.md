@@ -1,5 +1,5 @@
 # Open-SourceBot 🤖
-> An open source bot project from TheSourceCode!
+An open source bot project from TheSourceCode!
 
 <div align="center">
   <p>
