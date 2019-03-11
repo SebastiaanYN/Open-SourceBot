@@ -8,7 +8,7 @@ Not a programmer? you can always [open an issue](https://github.com/The-SourceCo
 
   Fork the repo (https://github.com/The-SourceCode/Open-SourceBot/fork)
  
-  Clone your fork
+  Clone your fork 
   ```sh
   git clone https://github.com/username/repo
   ```
