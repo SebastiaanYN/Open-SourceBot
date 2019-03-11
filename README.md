@@ -1,5 +1,5 @@
 #  Open-SourceBot 🤖
-[![Discord](https://discordapp.com/api/guilds/265499275088232448/embed.png)](https://discord.gg/jkAzNyB)
+[![Discord](https://discordapp.com/api/guilds/265499275088232448/embed.png?style=banner2)](https://discord.gg/jkAzNyB)
 >An open-source bot project from TheSourceCode
 ---
 ## Contributing 📝
