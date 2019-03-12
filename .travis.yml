@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 10
+
+install: npm i
+cache: npm
+
+jobs:
+  include:
+    - script: npm run lint
+      name: "Lint"
