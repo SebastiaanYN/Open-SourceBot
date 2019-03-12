@@ -26,6 +26,13 @@ git push origin feature/foobar
 ```
 Create a new Pull Request (https://github.com/The-SourceCode/Open-SourceBot/compare)
 
+Note:
+```
+All Code must be Properly Documented. 
+Documentation Must be Clear and Concise.
+```
+**Failure** To Adhere to the Above Documentation Conditions Will result in addition not being added
+
 ---
 
 ## Info 📍
