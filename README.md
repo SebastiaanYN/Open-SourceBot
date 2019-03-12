@@ -1,30 +1,13 @@
 #  Open-SourceBot 🤖
 [![Discord](https://discordapp.com/api/guilds/265499275088232448/embed.png?style=banner2)](https://discord.gg/jkAzNyB)
->An open-source bot project from TheSourceCode
+> An open-source bot project from TheSourceCode
+
 ---
+
 ## Contributing 📝
 If you want to contibute to this project you can follow the steps below.
-Not a programmer? you can always [open an issue](https://github.com/The-SourceCode/Open-SourceBot/issues/new) and share your ideas!
-
-  Fork the repo (https://github.com/The-SourceCode/Open-SourceBot/fork)
- 
-  Clone your fork 
-  ```sh
-  git clone https://github.com/username/repo
-  ```
-  Create your feature branch 
-```sh
-git checkout -b feature/fooBar
-```
-Commit your changes
-```sh
-git commit -m "add some foobar"
-```
-Push to the new branch
-```sh
-git push origin feature/foobar
-```
-Create a new Pull Request (https://github.com/The-SourceCode/Open-SourceBot/compare)
+Not a programmer? You can always [open an issue](https://github.com/The-SourceCode/Open-SourceBot/issues/new) and share your ideas!
+More information about contributing can be found [here](.github/CONTRIBUTING.md).
 
 ---
 
@@ -33,4 +16,4 @@ Create a new Pull Request (https://github.com/The-SourceCode/Open-SourceBot/comp
 
 ---
 
-![alt text](https://avatars2.githubusercontent.com/u/24659713?s=460&v=4)
+![{TheSourceCode} logo](https://avatars2.githubusercontent.com/u/24659713?s=460&v=4)
