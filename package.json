@@ -22,6 +22,7 @@
     "eslint-plugin-import": "^2.16.0"
   },
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "djs-commands": "^1.2.2"
   }
 }
