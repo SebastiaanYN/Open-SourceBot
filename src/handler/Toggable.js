@@ -1,4 +1,4 @@
-class Module {
+class Toggable {
 
 	constructor() {
 		this.enable = true;
@@ -6,11 +6,11 @@ class Module {
 
 	toggle() {
 		if (this.enable = true) {
-			disable();
+			this.disable();
 			this.enable = false;
 		} else {
 			enable();
-			this.enable = true;
+			this.his.enable = true;
 		}
 
 	}
