@@ -2,8 +2,7 @@ const { Command } = require('../../../handler');
 
 module.exports = class extends Command {
   constructor({ commandHandler }) {
-    super({
-      name: 'help',
+    super('help', {
       aliases: ['alias', 'test'],
       info: `
         Show all the commands or info about a specific command

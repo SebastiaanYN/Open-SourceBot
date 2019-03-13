@@ -2,11 +2,10 @@ const { Command } = require('../../../handler');
 
 module.exports = class extends Command {
   constructor({ mongo }) {
-    super({
-      name: 'coins',
+    super('coins', {
       aliases: ['balance'],
       info: 'Get your coins',
-      usage: 'ping',
+      usage: 'coins',
     });
 
     this.mongo = mongo;

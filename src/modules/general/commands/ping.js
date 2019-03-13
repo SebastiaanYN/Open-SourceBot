@@ -2,8 +2,7 @@ const { Command } = require('../../../handler');
 
 module.exports = class extends Command {
   constructor() {
-    super({
-      name: 'ping',
+    super('ping', {
       aliases: ['pong'],
       info: 'Get the ping of the bot',
       usage: 'ping',
