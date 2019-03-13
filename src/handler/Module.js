@@ -17,11 +17,9 @@ class Module {
 
 	enable() {
 		this.enable = true;
-		super.enable();
 	}
 
 	disable() {
 		this.enable = false;
-		super.disable();
 	}
 }
