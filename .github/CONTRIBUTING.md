@@ -14,6 +14,11 @@ Create your feature branch
 git checkout -b feature/fooBar
 ```
 
+Write your changes and make sure all tests pass
+```sh
+npm test
+```
+
 Commit your changes
 ```sh
 git commit -m "add some foobar"
