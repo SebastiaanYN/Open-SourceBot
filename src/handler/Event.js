@@ -1,10 +1,14 @@
-class Event {
+let Toggable = require("./Toggable.js");
+class Event extends Toggable {
   constructor(eventName) {
+    super()
     this.eventName = eventName;
   }
 
   run() {
-    throw new Error('Event is missing run method');
+    if (this.enabled) {
+     throw new Error('Event is missing run method'); 
+    }
   }
 }
 
