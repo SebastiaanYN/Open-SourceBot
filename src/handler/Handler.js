@@ -1,37 +1,35 @@
 const { Client } = require('discord.js');
-let Command = require("./Command.js");
+const Command = require('./Command.js');
 
 class Handler {
-
   /**
    * @description Create a new handler instance
    * @param {Client} client The discord.js client
+   * @returns {undefined} If the command didn't go through
    */
   constructor(client) {
     // Creating a new map.
     this.commands = new Map();
     this.client = client;
-    
+
     // TODO: Declare other properties
     // TODO: Customizability
-    let prefix = "+";
-    
-    // Basic commmand handler.
-    client.on("message", (msg) => {
+    const prefix = '+';
 
+    // Basic commmand handler.
+    client.on('message', (msg) => {
       if (!msg.content.startsWith(prefix)) return;
 
-      let args = msg.content.split(" ");
+      const args = msg.content.split(' ');
 
-      let command = args.shift().slice(prefix.length);
+      const command = args.shift().slice(prefix.length);
 
       if (!this.commands.has(command)) return;
 
-      let commandClass = this.commands.get(command);
+      const commandClass = this.commands.get(command);
 
       if (commandClass.isEnabled) commandClass.run(msg);
     });
-    
   }
 
   /**
@@ -42,16 +40,17 @@ class Handler {
   load(directory, dependencies) {
     this.directory = directory;
     this.dependencies = dependencies;
-    
+
     // TODO: Load all files
   }
-  
+
   /**
    * @description Add the commands to the list.
-   * @param {Object} The command classes.
+   * @returns {undefined} If something went wrong
+   * @param {Command} command The command classes.
    */
   addCommand(command) {
-    if (!command instanceof Command) return;
+    if (!(command instanceof Command)) return;
     // Theoratical, open to change.
     this.commands.set(command.name, command);
   }

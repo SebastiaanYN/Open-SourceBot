@@ -1,4 +1,5 @@
-let Toggleable = require("./Toggleable.js");
+const Toggleable = require('./Toggleable.js');
+
 class Command extends Toggleable {
   /**
    * @description Create a new command
@@ -28,12 +29,12 @@ class Command extends Toggleable {
     }
     this.usage = options.usage;
   }
-  
+
   /**
    * @description Method that runs when the command is executed
-   * @param {Object} The message event.
+   * //@param {Object} The message event.
    */
-  run(msg) {
+  run(/* msg */) {
     throw new Error(`Command '${this.name}' is missing run method`);
   }
 }

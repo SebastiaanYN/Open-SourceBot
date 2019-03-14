@@ -1,4 +1,5 @@
-let Toggleable = require("./Toggleable.js");
+const Toggleable = require('./Toggleable.js');
+
 class Event extends Toggleable {
   /**
    * @description Create a new event
@@ -13,9 +14,10 @@ class Event extends Toggleable {
 
   /**
    * @description Method that runs when the event is fired
+   * //@param {Event} event The event
    */
-  run(event) {
-    throw new Error('Event is missing run method'); 
+  run(/* event */) {
+    throw new Error('Event is missing run method');
   }
 }
 
