@@ -27,7 +27,7 @@ class Handler {
 
       if (!this.commands.has(command.slice(prefix.length))) return;
 
-      let command = this.commands.get(command.slice(prefix.length)) return;
+      let command = this.commands.get(command.slice(prefix.length));
 
       if (command.isEnabled) command.run(msg);
     });
