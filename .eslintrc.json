@@ -6,7 +6,6 @@
   "rules": {
     "no-console": "off",
     "class-methods-use-this": "off",
-    "require-await": "error",
 
     "jsdoc/check-param-names": "error",
     "jsdoc/check-tag-names": "error",
