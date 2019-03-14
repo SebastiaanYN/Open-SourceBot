@@ -1,4 +1,5 @@
-class Command extends Module{
+let Toggable = require("./Toggable.js");
+class Command extends Toggable {
   constructor(options) {
     this.name = options.name;
 
@@ -14,7 +15,7 @@ class Command extends Module{
   }
 
   run() {
-    if (this.enable) {
+    if (this.enabledd) {
       throw new Error(`Command '${this.name}' is missing run method`);
     }
   }
