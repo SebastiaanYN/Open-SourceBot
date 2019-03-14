@@ -20,6 +20,7 @@ class Command extends Toggable {
   }
 
   run() {
+    //TODO Either place the check in the handler or a seperate method.
     //Checks if this command is enabled
     if (this.enabled) {
       throw new Error(`Command '${this.name}' is missing run method`);
