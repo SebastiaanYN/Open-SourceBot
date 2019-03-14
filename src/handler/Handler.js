@@ -51,7 +51,7 @@ class Handler {
    */
   addCommand(command) {
     if (!(command instanceof Command)) return;
-    // Theoratical, open to change.
+    // Theoretical, open to change.
     this.commands.set(command.name, command);
   }
 }
