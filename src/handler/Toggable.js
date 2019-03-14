@@ -1,25 +1,25 @@
 class Toggable {
 
 	constructor() {
-		this.enable = true;
+		this.enabled = true;
 	}
 
 	toggle() {
-		if (this.enable = true) {
+		if (this.enabled = true) {
 			this.disable();
-			this.enable = false;
+			this.enabled = false;
 		} else {
 			enable();
-			this.his.enable = true;
+			this.enabled = true;
 		}
 
 	}
 
 	enable() {
-		this.enable = true;
+		this.enabled = true;
 	}
 
 	disable() {
-		this.enable = false;
+		this.enabled = false;
 	}
 }
