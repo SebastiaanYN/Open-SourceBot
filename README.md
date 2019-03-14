@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://i.imgur.com/YXbh0LE.png" align="center">
+<img src="https://i.imgur.com/YXbh0LE.png" align="center" alt="Logo">
 <br>
 <br>
 <strong><i>An open-source bot project from TheSourceCode</i></strong>
