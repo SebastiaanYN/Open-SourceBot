@@ -33,6 +33,7 @@ There are a couple requirements that need to be met before a pull request can be
 - Code needs to have documentation where necessary. If we believe the documentation is not clear enough, we will let you know on the pull request.
 - Maintainers need to review and approve the changes before a pull request can be merged.
 - No commits to the master branch should be made. All changes should be made through pull requests.
+- **Please squash your commits into one**. This will mean that your PR will show up as one neat commit in the commit history. Squashing can be done [like this](https://www.internalpointers.com/post/squash-commits-into-one-git).
 
 If you have any questions about these requirements, feel free to ask.
 
