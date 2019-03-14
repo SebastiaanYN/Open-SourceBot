@@ -16,7 +16,7 @@
 </a>
 
 <a href="https://github.com/The-SourceCode/Open-SourceBot">
-    <img src="https://img.shields.io/github/languages/top/The-SourceCode/Open-SourceBot.svg?colorB=Yellow&style=for-the-badge" alt="Languages">
+    <img src="https://img.shields.io/github/languages/top/The-SourceCode/Open-SourceBot.svg?colorB=521dec&style=for-the-badge" alt="Languages">
 </a>
 
 <br>
@@ -26,11 +26,11 @@
 </a>
 
 <a href="https://github.com/The-SourceCode/Open-SourceBot/issues">
-    <img src="https://img.shields.io/github/issues/The-SourceCode/Open-SourceBot.svg?style=for-the-badge" alt="Issues">
+    <img src="https://img.shields.io/github/issues/The-SourceCode/Open-SourceBot.svg?style=for-the-badge&colorB=37f149" alt="Issues">
 </a>
 
 <a href="https://github.com/The-SourceCode/Open-SourceBot/pulls">
-    <img src="https://img.shields.io/github/issues-pr/The-SourceCode/Open-SourceBot.svg?style=for-the-badge" alt="Pull Request">
+    <img src="https://img.shields.io/github/issues-pr/The-SourceCode/Open-SourceBot.svg?style=for-the-badge&colorB=3e7eb0" alt="Pull Request">
 </a>
 
 <br>
