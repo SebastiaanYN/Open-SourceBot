@@ -5,7 +5,6 @@ class Handler {
   /**
    * @description Create a new handler instance
    * @param {Client} client The discord.js client
-   * @returns {undefined} If the command didn't go through
    */
   constructor(client) {
     // Creating a new map.
@@ -46,7 +45,7 @@ class Handler {
 
   /**
    * @description Add the commands to the list.
-   * @returns {undefined} If something went wrong
+   * @returns {undefined} If command is not an instance of the Command class.
    * @param {Command} command The command classes.
    */
   addCommand(command) {

@@ -14,7 +14,7 @@ class Event extends Toggleable {
 
   /**
    * @description Method that runs when the event is fired
-   * //@param {Event} event The event object/properties.
+   * //@param {Event} event The event's object/properties.
    */
   run(/* event */) {
     throw new Error('Event is missing run method');

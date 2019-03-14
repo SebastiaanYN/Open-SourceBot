@@ -7,11 +7,7 @@ class Toggleable {
    * @description Toggle isEnabled
   */
   toggle() {
-    if (this.isEnabled) {
-      this.disable();
-    } else {
-      this.enable();
-    }
+    this.isEnabled = !this.isEnabled;
   }
 
   /**
