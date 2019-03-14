@@ -13,11 +13,11 @@ class Command {
     if (!Array.isArray(options.aliases)) {
       throw new TypeError('Aliases must be an array');
     }
-    for (alias of options.aliases) {
-      if (typeof alias !== "string") {
-        throw new TypeError("Aliases array must contain only string")
+    options.aliases.some((alias) => {
+      if (typeof alias !== 'string') {
+        throw new TypeError('Aliases array must contain only strings');
       }
-    }
+    });
     this.aliases = options.aliases;
 
     if (!(typeof options.info === 'string')) {
