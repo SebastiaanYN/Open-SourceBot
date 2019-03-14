@@ -3,9 +3,9 @@ class Command {
    * @description Create a new command
    * @param {string} name The name of the command
    * @param {Object} options The options for this command
-   * @param {Array<string>|Array} options.aliases Aliases of this command
-   * @param {string} options.info Information about this command
-   * @param {string} options.usage Usage of this command
+   * @param {Array<string>} [options.aliases] Aliases of this command
+   * @param {string} [options.info] Information about this command
+   * @param {string} [options.usage] Usage of this command
    */
   constructor(name, options) {
     this.name = name;
