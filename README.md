@@ -52,7 +52,3 @@ The bot is a collaborative effort from TheSourceCode community to create a featu
 
 ---
 
-
-
-![{TheSourceCode} logo](https://avatars2.githubusercontent.com/u/24659713?s=460&v=4)
-
