@@ -30,3 +30,4 @@ class Toggleable {
 		this.isEnabled = false;
 	}
 }
+module.exports = Toggleable

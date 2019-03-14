@@ -19,17 +19,17 @@ class Handler {
     // Basic commmand handler.
     client.on("message", (msg) => {
 
+      if (!msg.content.startsWith(prefix)) return;
+
       let args = msg.content.split(" ");
 
-      let command = args.shift();
+      let command = args.shift().slice(prefix.length);
 
-      if (!command.startsWith(prefix)) return;
+      if (!this.commands.has(command)) return;
 
-      if (!this.commands.has(command.slice(prefix.length))) return;
+      let commandClass = this.commands.get(command);
 
-      let command = this.commands.get(command.slice(prefix.length));
-
-      if (command.isEnabled) command.run(msg);
+      if (commandClass.isEnabled) commandClass.run(msg);
     });
     
   }
