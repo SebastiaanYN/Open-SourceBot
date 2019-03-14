@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "npm run lint",
-    "lint": "eslint src"
+    "lint": "eslint --fix src"
   },
   "repository": {
     "type": "git",
