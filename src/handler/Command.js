@@ -1,4 +1,5 @@
-class Command {
+let Toggleable = require("./Toggleable.js");
+class Command extends Toggleable {
   /**
    * @description Create a new command
    * @param {string} name The name of the command
@@ -8,6 +9,8 @@ class Command {
    * @param {string} options.usage Usage of this command
    */
   constructor(name, options) {
+    // Calls super for Toggleable, (Super needs to be called)
+    super();
     this.name = name;
 
     if (!Array.isArray(options.aliases)) {
@@ -25,11 +28,12 @@ class Command {
     }
     this.usage = options.usage;
   }
-
+  
   /**
    * @description Method that runs when the command is executed
+   * @param {Object} The message event.
    */
-  run() {
+  run(msg) {
     throw new Error(`Command '${this.name}' is missing run method`);
   }
 }
