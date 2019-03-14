@@ -47,7 +47,7 @@ More information about contributing can be found [here](.github/CONTRIBUTING.md)
 ---
 
 ## Info 📍
-* The bot is a collaborative effort from TheSourceCode community to create a feature packed discord bot where everyone is welcome to contribute
+The bot is a collaborative effort from TheSourceCode community to create a feature packed discord bot where everyone is welcome to contribute
 
 ---
 
