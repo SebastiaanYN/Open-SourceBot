@@ -5,7 +5,7 @@ class Command {
    * @param {Object} options The options for this command
    * @param {Array<string>|Array} options.aliases Aliases of this command
    * @param {string} options.info Information about this command
-   * @param {string|null} options.usage Usage of this command
+   * @param {string} options.usage Usage of this command
    */
   constructor(name, options) {
     this.name = name;
@@ -18,12 +18,12 @@ class Command {
     if (!(typeof options.info === 'string')) {
       throw new TypeError('Info must be a string');
     }
-    this.info = options.info || "None";
+    this.info = options.info || 'None';
 
     if (!(typeof options.usage === 'string')) {
       throw new TypeError('Usage must be a string');
     }
-    this.usage = options.usage || "None";
+    this.usage = options.usage || 'None';
   }
 
   /**
