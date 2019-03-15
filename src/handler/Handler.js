@@ -61,7 +61,8 @@ class Handler {
           try {
             commandOrEvent = new CommandOrEvent(dependencies);
           } catch (err) {
-            throw new Error(`Module '${file}' could not be instantiated, does it export a class?`);
+            // TODO: add a debug message here?
+            return;
           }
 
           // Handle the object, throw an error if it does not extend Command or Event
@@ -72,7 +73,7 @@ class Handler {
           } else if (commandOrEvent instanceof Event) {
             this.loadEvent(commandOrEvent);
           } else {
-            throw new Error(`Module '${file}' does not extend Command or Event`);
+            // TODO: add a debug message here?
           }
         });
     });
