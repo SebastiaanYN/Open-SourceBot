@@ -111,18 +111,7 @@ class Handler {
     events.push(event);
 
     this.events.set(event.eventName, events);
-  }
-
-  /**
-   * @description Add the commands to the list.
-   * @returns {undefined} If command is not an instance of the Command class.
-   * @param {Command} command The command classes.
-   */
-  addCommand(command) {
-    if (!(command instanceof Command)) return;
-    // Theoretical, open to change.
-    this.commands.set(command.name, command);
-  }
+  } 
 }
 
 module.exports = Handler;
