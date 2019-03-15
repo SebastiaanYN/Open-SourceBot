@@ -14,8 +14,9 @@ header {
 	position: fixed;
 	opacity: 0.95;
 	width: 100%;
-	background-color: blue;
+	background-color: #b1b1b1;
 	height: 50px;
+	font-family: sans-serif;
 }
 
 nav {
@@ -25,21 +26,39 @@ nav {
 
 ul {
 	margin: 0;
+}
+
+#navLocationBar {
+	padding: 0px 10px;
+	float: left;
+}
+
+#navSocialBar {
 	float: right;
 }
 
-#branding {
+#branding h2{
+	margin: 0;
+	font-size: 17px;
 	float: left;
-	padding: 1em 0;
+	padding: 0.9em 0;
 	color: white;
 }
 
 .navButton:hover {
-	background-color: grey;
+	background-color: #a1a1a1;
 }
 
 .navButton {
 	padding: 1em 10px;
+	text-decoration: none;
+	list-style: none;
+	float: left;
+	color: #fff;
+}
+
+.navSocialButton {
+	padding: 0.5em 0 0 4px;
 	text-decoration: none;
 	list-style: none;
 	float: left;
