@@ -35,9 +35,8 @@ class Command extends Toggleable {
 
   /**
    * @description Method that runs when the command is executed
-   * //@param {Message} The message event.
    */
-  run(/* msg */) {
+  run() {
     throw new Error(`Command '${this.name}' is missing run method`);
   }
 }

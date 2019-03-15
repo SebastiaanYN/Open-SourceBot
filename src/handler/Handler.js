@@ -1,5 +1,4 @@
 const { Client } = require('discord.js');
-
 const fs = require('fs');
 const path = require('path');
 
@@ -11,7 +10,6 @@ class Handler {
   /**
    * @description Create a new handler instance
    * @param {Client} client The discord.js client
-   * @returns {undefined} undifined To get out the msg event when it
    * doesn't match a command or doesn't have the prefix.
    */
   constructor(client) {
