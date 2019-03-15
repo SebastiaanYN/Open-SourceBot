@@ -63,6 +63,7 @@ class Handler {
             this.loadCommand(command);
           } else if (CommandOrEvent.prototype instanceof Event) {
             const event = new CommandOrEvent(dependencies);
+            event.category = category;
 
             this.loadEvent(event);
           }
