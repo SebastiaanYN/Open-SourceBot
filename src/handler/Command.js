@@ -24,6 +24,9 @@ class Command {
       throw new TypeError('Usage must be a string');
     }
     this.usage = options.usage || 'None';
+
+    // Category will be assigned by the Handler
+    this.category = null;
   }
 
   /**
