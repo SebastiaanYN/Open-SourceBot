@@ -10,7 +10,6 @@ class Handler {
   /**
    * @description Create a new handler instance
    * @param {Client} client The discord.js client
-   * doesn't match a command or doesn't have the prefix.
    */
   constructor(client) {
     /**
