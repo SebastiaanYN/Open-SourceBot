@@ -1,0 +1,47 @@
+/* Padding/margin resets */
+html, body {
+	padding: 0;
+	margin: 0
+}
+
+.container {
+	margin: auto;
+	width: 80%;
+}
+
+/* Possibly more navbars, so we may have to resort to ids. */
+header {
+	position: fixed;
+	opacity: 0.95;
+	width: 100%;
+	background-color: blue;
+	height: 50px;
+}
+
+nav {
+	display: inline;
+	width: 100%;
+}
+
+ul {
+	margin: 0;
+	float: right;
+}
+
+#branding {
+	float: left;
+	padding: 1em 0;
+	color: white;
+}
+
+.navButton:hover {
+	background-color: grey;
+}
+
+.navButton {
+	padding: 1em 10px;
+	text-decoration: none;
+	list-style: none;
+	float: left;
+	color: #fff;
+}
