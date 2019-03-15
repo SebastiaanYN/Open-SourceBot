@@ -111,7 +111,7 @@ class Handler {
     events.push(event);
 
     this.events.set(event.eventName, events);
-  } 
+  }
 }
 
 module.exports = Handler;
