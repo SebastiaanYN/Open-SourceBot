@@ -56,24 +56,16 @@ class Handler {
           // eslint-disable-next-line global-require, import/no-dynamic-require
           const CommandOrEvent = require(file);
 
-          // Try to instantiate the command or event, throw an error if it fails
-          let commandOrEvent;
-          try {
-            commandOrEvent = new CommandOrEvent(dependencies);
-          } catch (err) {
-            // TODO: add a debug message here?
-            return;
-          }
+          if (CommandOrEvent.prototype instanceof Command) {
+            const command = new CommandOrEvent(dependencies);
+            command.category = category;
 
-          // Handle the object, throw an error if it does not extend Command or Event
-          if (commandOrEvent instanceof Command) {
-            commandOrEvent.category = category;
+            this.loadCommand(command);
+          } else if (CommandOrEvent.prototype instanceof Event) {
+            const event = new CommandOrEvent(dependencies);
+            event.category = category;
 
-            this.loadCommand(commandOrEvent, file);
-          } else if (commandOrEvent instanceof Event) {
-            this.loadEvent(commandOrEvent);
-          } else {
-            // TODO: add a debug message here?
+            this.loadEvent(event);
           }
         });
     });

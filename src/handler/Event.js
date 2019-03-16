@@ -5,6 +5,9 @@ class Event {
    */
   constructor(eventName) {
     this.eventName = eventName;
+
+    // Category will be assigned by the Handler
+    this.category = null;
   }
 
   /**
