@@ -1,9 +1,13 @@
-class Event {
+const Toggleable = require('./Toggleable.js');
+
+class Event extends Toggleable {
   /**
    * @description Create a new event
    * @param {string} eventName The name of the event
    */
   constructor(eventName) {
+    // Calls super for Toggleable, (Super needs to be called)
+    super();
     this.eventName = eventName;
 
     // Category will be assigned by the Handler

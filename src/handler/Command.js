@@ -1,4 +1,6 @@
-class Command {
+const Toggleable = require('./Toggleable.js');
+
+class Command extends Toggleable {
   /**
    * @description Create a new command
    * @param {string} name The name of the command
@@ -8,6 +10,8 @@ class Command {
    * @param {string} [options.usage] Usage of this command
    */
   constructor(name, options) {
+    // Calls super for Toggleable, (Super needs to be called)
+    super();
     this.name = name;
 
     if (!Array.isArray(options.aliases)) {
