@@ -11,4 +11,10 @@ handler.load(path.join(__dirname, './modules'), {
   commandHandler: handler,
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN)
+  .then(() => {
+    console.log('Logged in');
+  })
+  .catch(error => {
+    console.error('Could not log in', error.stack);
+  });
