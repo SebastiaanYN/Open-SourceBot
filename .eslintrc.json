@@ -7,7 +7,7 @@
     "no-console": "off",
     "class-methods-use-this": "off",
     "require-await": "error",
-    "arrow-parens": "off",
+    "no-plusplus": "off",
 
     "jsdoc/check-param-names": "error",
     "jsdoc/check-tag-names": "error",

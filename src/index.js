@@ -3,18 +3,32 @@ const path = require('path');
 const { Client } = require('discord.js');
 const { Handler } = require('./handler');
 
-const client = new Client({ disableEveryone: true });
-const handler = new Handler(client);
+// TODO: Implement a proper config
+const config = {
+  token: process.env.TOKEN,
+  shards: parseInt(process.env.SHARDS, 10) || 1,
+};
 
-handler.load(path.join(__dirname, './modules'), {
-  client,
-  commandHandler: handler,
-});
-
-client.login(process.env.TOKEN)
-  .then(() => {
-    console.log('Logged in');
-  })
-  .catch(error => {
-    console.error('Could not log in', error.stack);
+for (let shard = 0; shard < config.shards; shard++) {
+  const client = new Client({
+    disableEveryone: true,
+    shardId: shard,
+    shardCount: config.shards,
   });
+
+  const handler = new Handler(client);
+
+  handler.load(path.join(__dirname, './modules'), {
+    client,
+    config,
+    commandHandler: handler,
+  });
+
+  client.login(config.token)
+    .then(() => {
+      console.log(`Logged in, shard ${shard + 1} of ${config.shards}`);
+    })
+    .catch((error) => {
+      console.error(`Could not log in, shard ${shard} of ${config.shards};`, error.stack);
+    });
+}
