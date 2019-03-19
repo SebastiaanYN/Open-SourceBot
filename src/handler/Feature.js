@@ -38,6 +38,10 @@ class Feature extends Toggleable {
       throw new TypeError('Can\'t register command, it does not extend Command');
     }
 
+    if (this.commands.has(command.name)) {
+      throw new Error(`Can't load command, the name '${command.name}' is already used as a command name`);
+    }
+
     this.commands.set(command.name, command);
   }
 
