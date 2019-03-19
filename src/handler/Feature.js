@@ -10,6 +10,10 @@ class Feature extends Toggleable {
   constructor(name) {
     super();
 
+    if (typeof name !== 'string') {
+      throw new TypeError('Feature name must be a string');
+    }
+
     /**
      * The name of this feature
      * @type {String}
@@ -18,15 +22,15 @@ class Feature extends Toggleable {
 
     /**
      * All commands that belong to this Feature
-     * @type {Map<string, Command>}
+     * @type {Array<Command>}
      */
-    this.commands = new Map();
+    this.commands = [];
 
     /**
      * All events that belong to this Feature
-     * @type {Map<string, Array<Event>>}
+     * @type {Array<Event>}
      */
-    this.events = new Map();
+    this.events = [];
   }
 
   /**
@@ -38,11 +42,7 @@ class Feature extends Toggleable {
       throw new TypeError('Can\'t register command, it does not extend Command');
     }
 
-    if (this.commands.has(command.name)) {
-      throw new Error(`Can't load command, the name '${command.name}' is already used as a command name`);
-    }
-
-    this.commands.set(command.name, command);
+    this.commands.push(command);
   }
 
   /**
@@ -54,10 +54,7 @@ class Feature extends Toggleable {
       throw new TypeError('Can\'t register event, it does not extend Event');
     }
 
-    const events = this.events.get(event.eventName) || [];
-    events.push(event);
-
-    this.events.set(event.eventName, events);
+    this.events.push(event);
   }
 }
 

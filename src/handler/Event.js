@@ -6,12 +6,9 @@ class Event extends Toggleable {
    * @param {string} eventName The name of the event
    */
   constructor(eventName) {
-    // Calls super for Toggleable, (Super needs to be called)
     super();
-    this.eventName = eventName;
 
-    // Category will be assigned by the Handler
-    this.category = null;
+    this.eventName = eventName;
   }
 
   /**

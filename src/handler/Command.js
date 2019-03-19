@@ -10,8 +10,8 @@ class Command extends Toggleable {
    * @param {string} [options.usage] Usage of this command
    */
   constructor(name, options) {
-    // Calls super for Toggleable, (Super needs to be called)
     super();
+
     this.name = name;
 
     if (!Array.isArray(options.aliases)) {
@@ -35,9 +35,6 @@ class Command extends Toggleable {
       throw new TypeError('Usage must be a string');
     }
     this.usage = options.usage || 'None';
-
-    // Category will be assigned by the Handler
-    this.category = null;
   }
 
   /**

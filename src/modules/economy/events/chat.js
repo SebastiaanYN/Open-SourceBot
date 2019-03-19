@@ -1,7 +1,7 @@
 const { Event } = require('../../../handler');
 
 module.exports = class extends Event {
-  constructor({ mongo }) {
+  constructor(mongo) {
     super('message');
 
     this.mongo = mongo;
