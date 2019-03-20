@@ -52,38 +52,36 @@ class Handler {
     this.directory = directory;
     this.dependencies = dependencies;
 
-    // All files that do not export a Feature will be added to this array and loaded later
-    const nodes = [];
-
-    Utils
+    // Find and require all JavaScript files
+    const nodes = Utils
       .readdirSyncRecursive(directory)
       .filter(file => file.endsWith('.js'))
-      .forEach((file) => {
-        // eslint-disable-next-line global-require, import/no-dynamic-require
-        const Node = require(file);
+      .map(require);
 
-        if (Node.prototype instanceof Feature) {
-          this.loadFeature(new Node(dependencies));
-        } else {
-          nodes.push(Node);
-        }
-      });
+    // Load all Features
+    nodes.forEach((Node) => {
+      if (Node.prototype instanceof Feature) {
+        this.loadFeature(new Node(dependencies));
+      }
+    });
 
-    // Load all Commands and Events that aren't registered by a Feature
+    // Load all Command and Event classes that haven't loaded yet
     nodes.forEach((Node) => {
       if (Node.prototype instanceof Command) {
-        // Load the command if it has not been loaded
-        if (!Array.from(this.commands.values())
-          .some(command => command instanceof Node)) {
+        const loaded = Array.from(this.commands.values())
+          .some(command => command instanceof Node);
+
+        if (!loaded) {
           this.loadCommand(new Node(dependencies));
         }
       }
 
       if (Node.prototype instanceof Event) {
-        // Load the event if it has not been loaded
-        if (!Array.from(this.events.values())
+        const loaded = Array.from(this.events.values())
           .some(events => events
-            .some(event => event instanceof Node))) {
+            .some(event => event instanceof Node));
+
+        if (!loaded) {
           this.loadEvent(new Node(dependencies));
         }
       }
