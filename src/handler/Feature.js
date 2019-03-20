@@ -56,6 +56,43 @@ class Feature extends Toggleable {
 
     this.events.push(event);
   }
+
+  /**
+   * @description Toggle this Feature and it's commands and events
+   * @returns {undefined}
+   * @override
+   */
+  toggle() {
+    if (this.isEnabled) {
+      this.disable();
+    } else {
+      this.enable();
+    }
+  }
+
+  /**
+   * @description Enable this Feature and it's commands and events
+   * @returns {undefined}
+   * @override
+   */
+  enable() {
+    super.enable();
+
+    this.commands.forEach(command => command.enable());
+    this.events.forEach(event => event.enable());
+  }
+
+  /**
+   * @description Disable this Feature and it's commands and events
+   * @returns {undefined}
+   * @override
+   */
+  disable() {
+    super.disable();
+
+    this.commands.forEach(command => command.disable());
+    this.events.forEach(event => event.disable());
+  }
 }
 
 module.exports = Feature;
