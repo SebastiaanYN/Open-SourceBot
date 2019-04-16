@@ -1,7 +1,6 @@
 const { Client } = require('discord.js');
-const fs = require('fs');
-const path = require('path');
 
+const Feature = require('./Feature.js');
 const Command = require('./Command.js');
 const Event = require('./Event.js');
 const Utils = require('../Utils.js');
@@ -17,6 +16,12 @@ class Handler {
      * @type {Client}
      */
     this.client = client;
+
+    /**
+     * A map of all features
+     * @type {Map<string, Feature>}
+     */
+    this.features = new Map();
 
     /**
      * A map containing all the commands, mapped by command name
@@ -47,39 +52,70 @@ class Handler {
     this.directory = directory;
     this.dependencies = dependencies;
 
-    const categories = fs.readdirSync(directory);
-    categories.forEach((category) => {
-      Utils
-        .readdirSyncRecursive(path.join(directory, category))
-        .filter(file => file.endsWith('.js'))
-        .forEach((file) => {
-          // eslint-disable-next-line global-require, import/no-dynamic-require
-          const CommandOrEvent = require(file);
+    // Find and require all JavaScript files
+    const nodes = Utils
+      .readdirSyncRecursive(directory)
+      .filter(file => file.endsWith('.js'))
+      .map(require);
 
-          if (CommandOrEvent.prototype instanceof Command) {
-            const command = new CommandOrEvent(dependencies);
-            command.category = category;
+    // Load all Features
+    nodes.forEach((Node) => {
+      if (Node.prototype instanceof Feature) {
+        this.loadFeature(new Node(dependencies));
+      }
+    });
 
-            this.loadCommand(command);
-          } else if (CommandOrEvent.prototype instanceof Event) {
-            const event = new CommandOrEvent(dependencies);
-            event.category = category;
+    // Load all Command and Event classes that haven't loaded yet
+    nodes.forEach((Node) => {
+      if (Node.prototype instanceof Command) {
+        const loaded = Array.from(this.commands.values())
+          .some(command => command instanceof Node);
 
-            this.loadEvent(event);
-          }
-        });
+        if (!loaded) {
+          this.loadCommand(new Node(dependencies));
+        }
+      }
+
+      if (Node.prototype instanceof Event) {
+        const loaded = Array.from(this.events.values())
+          .some(events => events
+            .some(event => event instanceof Node));
+
+        if (!loaded) {
+          this.loadEvent(new Node(dependencies));
+        }
+      }
+    });
+  }
+
+  /**
+   * @description Load a feature and it's commands
+   * @param {Feature} feature The feature that needs to be loaded
+   */
+  loadFeature(feature) {
+    if (this.features.has(feature.name)) {
+      throw new Error(`Can't load Feature, the name '${feature.name}' is already used`);
+    }
+
+    this.features.set(feature.name, feature);
+
+    feature.commands.forEach((command) => {
+      this.loadCommand(command);
+    });
+
+    feature.events.forEach((event) => {
+      this.loadEvent(event);
     });
   }
 
   /**
    * @description Load a command
    * @param {Command} command The command that needs to be loaded
-   * @param {string} file The file path of the command, used for errors
    */
-  loadCommand(command, file) {
+  loadCommand(command) {
     // Command name might be in use or name might already be an existing alias
     if (this.commands.has(command.name) || this.aliases.has(command.name)) {
-      throw new Error(`Can't load '${file}', the name '${command.name}' is already used as a command name or alias`);
+      throw new Error(`Can't load command, the name '${command.name}' is already used as a command name or alias`);
     }
 
     this.commands.set(command.name, command);
@@ -87,7 +123,7 @@ class Handler {
     command.aliases.forEach((alias) => {
       // Alias might already be a command or might already be in use
       if (this.commands.has(alias) || this.aliases.has(alias)) {
-        throw new Error(`Can't load '${file}', the alias '${alias}' is already used as a command name or alias`);
+        throw new Error(`Can't load command, the alias '${alias}' is already used as a command name or alias`);
       }
 
       this.aliases.set(alias, command);
