@@ -8,7 +8,7 @@ const Utils = require('../Utils.js');
 class Handler {
   /**
    * @description Create a new handler instance
-   * @param {Client} client The discord.js client
+   * @param {Client} client - The discord.js client
    */
   constructor(client) {
     /**
@@ -44,8 +44,8 @@ class Handler {
 
   /**
    * @description Load all command/event modules from a directory
-   * @param {string} directory The directory of the modules
-   * @param {Object} dependencies The dependencies of the modules
+   * @param {string} directory - The directory of the modules
+   * @param {object} dependencies - The dependencies of the modules
    * @returns {undefined}
    */
   load(directory, dependencies) {
@@ -90,7 +90,7 @@ class Handler {
 
   /**
    * @description Load a feature and it's commands
-   * @param {Feature} feature The feature that needs to be loaded
+   * @param {Feature} feature - The feature that needs to be loaded
    */
   loadFeature(feature) {
     if (this.features.has(feature.name)) {
@@ -110,7 +110,7 @@ class Handler {
 
   /**
    * @description Load a command
-   * @param {Command} command The command that needs to be loaded
+   * @param {Command} command - The command that needs to be loaded
    */
   loadCommand(command) {
     // Command name might be in use or name might already be an existing alias
@@ -132,7 +132,7 @@ class Handler {
 
   /**
    * @description Load an event
-   * @param {Event} event The event that needs to be loaded
+   * @param {Event} event - The event that needs to be loaded
    */
   loadEvent(event) {
     const events = this.events.get(event.eventName) || [];

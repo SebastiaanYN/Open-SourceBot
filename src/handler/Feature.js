@@ -5,7 +5,7 @@ const Toggleable = require('./Toggleable.js');
 class Feature extends Toggleable {
   /**
    * @description Create a new Feature
-   * @param {string} name The name of this Feature
+   * @param {string} name - The name of this Feature
    */
   constructor(name) {
     super();
@@ -35,7 +35,7 @@ class Feature extends Toggleable {
 
   /**
    * @description Register a new command
-   * @param {Command} command The command that needs to be registered
+   * @param {Command} command - The command that needs to be registered
    */
   registerCommand(command) {
     if (!(command instanceof Command)) {
@@ -47,7 +47,7 @@ class Feature extends Toggleable {
 
   /**
    * @description Register a new event
-   * @param {Event} event The event that needs to be registered
+   * @param {Event} event - The event that needs to be registered
    */
   registerEvent(event) {
     if (!(event instanceof Event)) {
