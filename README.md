@@ -39,7 +39,6 @@
 <hr>
 <br>
 
-
 ## Contributing 📝
 If you want to contribute to this project you can follow the steps below.
 Not a programmer? You can always [open an issue](https://github.com/The-SourceCode/Open-SourceBot/issues/new) and share your ideas!
