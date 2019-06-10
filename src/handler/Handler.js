@@ -9,13 +9,20 @@ class Handler {
   /**
    * @description Create a new handler instance
    * @param {Client} client - The discord.js client
+   * @param {string} prefix - The prefix of the bot
    */
-  constructor(client) {
+  constructor(client, prefix) {
     /**
      * The discord.js client
      * @type {Client}
      */
     this.client = client;
+
+    /**
+     * The prefix of the bot
+     * @type {string}
+     */
+    this.prefix = prefix;
 
     /**
      * A map of all features
@@ -139,6 +146,51 @@ class Handler {
     events.push(event);
 
     this.events.set(event.eventName, events);
+  }
+
+  /**
+   * @description Start the bot, registering events and commands
+   * @param {string} token - The token of the bot
+   */
+  start(token) {
+    // Handle events
+    for (const [name, handlers] of this.events) {
+      this.client.on(name, (...params) => {
+        for (const handler of handlers) {
+          try {
+            handler.run(this.client, ...params);
+          } catch (err) {
+            console.error(err);
+          }
+        }
+      });
+    }
+
+    // Handle commands
+    this.client.on('message', (message) => {
+      if (message.channel.type !== 'text' || message.author.bot || !message.content.startsWith(this.prefix)) {
+        return;
+      }
+
+      // Remove prefix and split message into command and args
+      const [command, ...args] = message.content.slice(this.prefix.length).split(' ');
+
+      const cmd = this.commands.get(command.toLowerCase());
+      if (!cmd) {
+        // No command found
+        return;
+      }
+
+      try {
+        cmd.run(message, args);
+      } catch (err) {
+        console.error(err);
+        message.reply('bleep bloop an error occured :C');
+      }
+    });
+
+    // Login
+    this.client.login(token);
   }
 }
 
