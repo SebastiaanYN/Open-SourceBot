@@ -4,7 +4,7 @@ const path = require('path');
 class Utils {
   /**
    * @description Read a directory recursively to get all files
-   * @param {string} directory The directory to read
+   * @param {string} directory - The directory to read
    * @returns {Array<string>} All the paths to the files
    */
   static readdirSyncRecursive(directory) {

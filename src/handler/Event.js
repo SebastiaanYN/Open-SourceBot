@@ -3,7 +3,7 @@ const Toggleable = require('./Toggleable.js');
 class Event extends Toggleable {
   /**
    * @description Create a new event
-   * @param {string} eventName The name of the event
+   * @param {string} eventName - The name of the event
    */
   constructor(eventName) {
     super();
