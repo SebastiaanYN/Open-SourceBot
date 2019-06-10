@@ -40,7 +40,7 @@ class Handler {
   /**
    * @description Load all command/event modules from a directory
    * @param {string} directory The directory of the modules
-   * @param {Object} dependencies The dependencies of the modules
+   * @param {object} dependencies The dependencies of the modules
    * @returns {undefined}
    */
   load(directory, dependencies) {
