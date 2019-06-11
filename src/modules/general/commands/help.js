@@ -3,7 +3,7 @@ const { Command } = require('../../../handler');
 module.exports = class extends Command {
   constructor({ commandHandler }) {
     super('help', {
-      aliases: ['alias', 'test'],
+      aliases: ['h', 'commands', 'cmds'],
       info: `
         Show all the commands or info about a specific command
         **[]** is optional
@@ -16,6 +16,10 @@ module.exports = class extends Command {
   }
 
   run(message) {
-    message.channel.send(this.commandHandler.commands);
+    const commands = Array.from(this.commandHandler.commands)
+      .map(([name, command]) => `${name} - ${command.aliases.join(', ')}`)
+      .join('\n');
+
+    message.channel.send(commands);
   }
 };

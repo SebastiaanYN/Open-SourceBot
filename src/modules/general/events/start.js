@@ -6,6 +6,6 @@ module.exports = class extends Event {
   }
 
   run(client) {
-    console.log(`${client.user.tag} is running`);
+    console.log(`Logged in as ${client.user.tag}`);
   }
 };
