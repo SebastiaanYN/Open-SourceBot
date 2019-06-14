@@ -157,10 +157,13 @@ class Handler {
     for (const [name, handlers] of this.events) {
       this.client.on(name, (...params) => {
         for (const handler of handlers) {
-          try {
-            handler.run(this.client, ...params);
-          } catch (err) {
-            console.error(err);
+          // Run event if enabled
+          if (handler.isEnabled) {
+            try {
+              handler.run(this.client, ...params);
+            } catch (err) {
+              console.error(err);
+            }
           }
         }
       });
@@ -176,8 +179,8 @@ class Handler {
       const [command, ...args] = message.content.slice(this.prefix.length).split(' ');
 
       const cmd = this.commands.get(command.toLowerCase());
-      if (!cmd) {
-        // No command found
+      if (!cmd || !cmd.isEnabled) {
+        // No command found or command is disabled
         return;
       }
 
