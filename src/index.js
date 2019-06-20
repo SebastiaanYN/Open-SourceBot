@@ -11,4 +11,4 @@ handler.load(path.join(__dirname, './modules'), {
   commandHandler: handler,
 });
 
-handler.start(process.env.TOKEN);
+client.login(process.env.TOKEN);

@@ -93,6 +93,9 @@ class Handler {
         }
       }
     });
+
+    // Register loaded commands and events
+    this.register();
   }
 
   /**
@@ -149,10 +152,9 @@ class Handler {
   }
 
   /**
-   * @description Start the bot, registering events and commands
-   * @param {string} token - The token of the bot
+   * @description Register the command and event handlers
    */
-  start(token) {
+  register() {
     // Handle events
     for (const [name, handlers] of this.events) {
       this.client.on(name, (...params) => {
@@ -191,9 +193,6 @@ class Handler {
         message.reply('bleep bloop an error occured :C');
       }
     });
-
-    // Login
-    this.client.login(token);
   }
 }
 
