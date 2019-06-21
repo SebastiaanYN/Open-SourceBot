@@ -172,7 +172,7 @@ class Handler {
     }
 
     // Handle commands
-    this.client.on('message', (message) => {
+    this.client.on('message', async (message) => {
       if (message.channel.type !== 'text' || message.author.bot || !message.content.startsWith(this.prefix)) {
         return;
       }
@@ -187,7 +187,7 @@ class Handler {
       }
 
       try {
-        cmd.run(message, args);
+        await cmd.run(message, args);
       } catch (err) {
         console.error(err);
         message.reply('bleep bloop an error occured :C');
