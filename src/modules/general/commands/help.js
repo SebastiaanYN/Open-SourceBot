@@ -10,6 +10,7 @@ module.exports = class extends Command {
         **<>** is required
       `,
       usage: 'help [command]',
+      guildOnly: false,
     });
 
     this.commandHandler = commandHandler;

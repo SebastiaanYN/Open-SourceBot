@@ -173,7 +173,7 @@ class Handler {
 
     // Handle commands
     this.client.on('message', async (message) => {
-      if (message.channel.type !== 'text' || message.author.bot || !message.content.startsWith(this.prefix)) {
+      if (message.author.bot || !message.content.startsWith(this.prefix)) {
         return;
       }
 
@@ -183,6 +183,11 @@ class Handler {
       const cmd = this.commands.get(command.toLowerCase());
       if (!cmd || !cmd.isEnabled) {
         // No command found or command is disabled
+        return;
+      }
+
+      if (cmd.guildOnly && !message.guild) {
+        message.channel.send('This command is only available in guilds');
         return;
       }
 

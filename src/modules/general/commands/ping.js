@@ -6,6 +6,7 @@ module.exports = class extends Command {
       aliases: ['pong'],
       info: 'Get the ping of the bot',
       usage: 'ping',
+      guildOnly: false,
     });
   }
 
