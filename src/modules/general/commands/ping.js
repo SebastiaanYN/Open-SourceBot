@@ -6,10 +6,19 @@ module.exports = class extends Command {
       aliases: ['pong'],
       info: 'Get the ping of the bot',
       usage: 'ping',
+      guildOnly: false,
     });
   }
 
-  run(message) {
-    message.channel.send(message.client.ping);
+  async run(message) {
+    const msg = await message.channel.send('Pinging...');
+    const ping = Math.round(msg.createdTimestamp - message.createdTimestamp);
+
+    if (ping <= 0) {
+      return msg.edit('Please try again...');
+    }
+
+    return msg.edit(`🏓 P${'o'.repeat(Math.ceil(ping / 100))}ng: \`${ping}ms\`\n`
+      + `💓 Heartbeat: \`${Math.round(message.client.ping)}ms\``);
   }
 };
