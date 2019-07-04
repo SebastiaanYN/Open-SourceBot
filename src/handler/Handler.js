@@ -188,9 +188,15 @@ class Handler {
         .slice(this.prefix.length)
         .split(' ');
 
-      const cmd = this.commands.get(command.toLowerCase());
+      let cmd = this.commands.get(command.toLowerCase());
+
+      if (!cmd) {
+        // Get the command by alias
+        cmd = this.aliases.get(command.toLowerCase());
+      }
+
       if (!cmd || !cmd.isEnabled) {
-        // No command found or command is disabled
+        // No command or alias found or command is disabled
         return;
       }
 
