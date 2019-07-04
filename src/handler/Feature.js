@@ -39,7 +39,7 @@ class Feature extends Toggleable {
    */
   registerCommand(command) {
     if (!(command instanceof Command)) {
-      throw new TypeError('Can\'t register command, it does not extend Command');
+      throw new TypeError("Can't register command, it does not extend Command");
     }
 
     this.commands.push(command);
@@ -51,7 +51,7 @@ class Feature extends Toggleable {
    */
   registerEvent(event) {
     if (!(event instanceof Event)) {
-      throw new TypeError('Can\'t register event, it does not extend Event');
+      throw new TypeError("Can't register event, it does not extend Event");
     }
 
     this.events.push(event);

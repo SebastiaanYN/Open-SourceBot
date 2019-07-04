@@ -3,11 +3,15 @@ module.exports = {
     node: true,
     es6: true,
   },
-  extends: 'airbnb-base',
+  extends: [
+    'airbnb-base',
+    'plugin:prettier/recommended',
+  ],
   parserOptions: {
     ecmaVersion: 2019,
   },
   plugins: [
+    'prettier',
     'import',
     'jsdoc',
     'eslint-comments',
@@ -20,6 +24,9 @@ module.exports = {
     'no-restricted-syntax': 'off',
     'prefer-destructuring': 'off',
     'linebreak-style': 'off',
+
+    // prettier
+    'prettier/prettier': 'error',
 
     // import
     'import/no-cycle': 'off',

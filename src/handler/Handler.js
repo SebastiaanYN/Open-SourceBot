@@ -60,23 +60,23 @@ class Handler {
     this.dependencies = dependencies;
 
     // Find and require all JavaScript files
-    const nodes = Utils
-      .readdirSyncRecursive(directory)
+    const nodes = Utils.readdirSyncRecursive(directory)
       .filter(file => file.endsWith('.js'))
       .map(require);
 
     // Load all Features
-    nodes.forEach((Node) => {
+    nodes.forEach(Node => {
       if (Node.prototype instanceof Feature) {
         this.loadFeature(new Node(dependencies));
       }
     });
 
     // Load all Command and Event classes that haven't loaded yet
-    nodes.forEach((Node) => {
+    nodes.forEach(Node => {
       if (Node.prototype instanceof Command) {
-        const loaded = Array.from(this.commands.values())
-          .some(command => command instanceof Node);
+        const loaded = Array.from(this.commands.values()).some(
+          command => command instanceof Node,
+        );
 
         if (!loaded) {
           this.loadCommand(new Node(dependencies));
@@ -84,9 +84,9 @@ class Handler {
       }
 
       if (Node.prototype instanceof Event) {
-        const loaded = Array.from(this.events.values())
-          .some(events => events
-            .some(event => event instanceof Node));
+        const loaded = Array.from(this.events.values()).some(events =>
+          events.some(event => event instanceof Node),
+        );
 
         if (!loaded) {
           this.loadEvent(new Node(dependencies));
@@ -104,16 +104,18 @@ class Handler {
    */
   loadFeature(feature) {
     if (this.features.has(feature.name)) {
-      throw new Error(`Can't load Feature, the name '${feature.name}' is already used`);
+      throw new Error(
+        `Can't load Feature, the name '${feature.name}' is already used`,
+      );
     }
 
     this.features.set(feature.name, feature);
 
-    feature.commands.forEach((command) => {
+    feature.commands.forEach(command => {
       this.loadCommand(command);
     });
 
-    feature.events.forEach((event) => {
+    feature.events.forEach(event => {
       this.loadEvent(event);
     });
   }
@@ -125,15 +127,19 @@ class Handler {
   loadCommand(command) {
     // Command name might be in use or name might already be an existing alias
     if (this.commands.has(command.name) || this.aliases.has(command.name)) {
-      throw new Error(`Can't load command, the name '${command.name}' is already used as a command name or alias`);
+      throw new Error(
+        `Can't load command, the name '${command.name}' is already used as a command name or alias`,
+      );
     }
 
     this.commands.set(command.name, command);
 
-    command.aliases.forEach((alias) => {
+    command.aliases.forEach(alias => {
       // Alias might already be a command or might already be in use
       if (this.commands.has(alias) || this.aliases.has(alias)) {
-        throw new Error(`Can't load command, the alias '${alias}' is already used as a command name or alias`);
+        throw new Error(
+          `Can't load command, the alias '${alias}' is already used as a command name or alias`,
+        );
       }
 
       this.aliases.set(alias, command);
@@ -172,13 +178,15 @@ class Handler {
     }
 
     // Handle commands
-    this.client.on('message', async (message) => {
+    this.client.on('message', async message => {
       if (message.author.bot || !message.content.startsWith(this.prefix)) {
         return;
       }
 
       // Remove prefix and split message into command and args
-      const [command, ...args] = message.content.slice(this.prefix.length).split(' ');
+      const [command, ...args] = message.content
+        .slice(this.prefix.length)
+        .split(' ');
 
       const cmd = this.commands.get(command.toLowerCase());
       if (!cmd || !cmd.isEnabled) {
