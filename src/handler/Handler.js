@@ -180,10 +180,15 @@ class Handler {
       // Remove prefix and split message into command and args
       const [command, ...args] = message.content.slice(this.prefix.length).split(' ');
 
-      const cmd = new Map([...this.commands, ...this.aliases]).get(command.toLowerCase());
+      let cmd = this.commands.get(command.toLowerCase());
+
+      // If there is not command get the alias if found
+      if (!cmd) {
+        cmd = this.aliases.get(command.toLowerCase());
+      }
 
       if (!cmd || !cmd.isEnabled) {
-        // No command found or command is disabled
+        // No command or alias found or command is disabled
         return;
       }
 
