@@ -182,8 +182,8 @@ class Handler {
 
       let cmd = this.commands.get(command.toLowerCase());
 
-      // If there is not command get the alias if found
       if (!cmd) {
+        // Get the command by alias
         cmd = this.aliases.get(command.toLowerCase());
       }
 
