@@ -19,7 +19,7 @@ class Command extends Toggleable {
       throw new TypeError('Aliases must be an array');
     }
     if (options.aliases) {
-      options.aliases.forEach((alias) => {
+      options.aliases.forEach(alias => {
         if (typeof alias !== 'string') {
           throw new TypeError('Aliases array must contain strings only');
         }

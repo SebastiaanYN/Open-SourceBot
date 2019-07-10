@@ -10,17 +10,16 @@ class Utils {
   static readdirSyncRecursive(directory) {
     let files = [];
 
-    fs.readdirSync(directory)
-      .forEach((file) => {
-        const location = path.join(directory, file);
+    fs.readdirSync(directory).forEach(file => {
+      const location = path.join(directory, file);
 
-        // If the file is a directory read it recursively
-        if (fs.lstatSync(location).isDirectory()) {
-          files = files.concat(Utils.readdirSyncRecursive(location));
-        } else {
-          files.push(location);
-        }
-      });
+      // If the file is a directory read it recursively
+      if (fs.lstatSync(location).isDirectory()) {
+        files = files.concat(Utils.readdirSyncRecursive(location));
+      } else {
+        files.push(location);
+      }
+    });
 
     return files;
   }

@@ -18,7 +18,9 @@ module.exports = class extends Command {
       return msg.edit('Please try again...');
     }
 
-    return msg.edit(`🏓 P${'o'.repeat(Math.ceil(ping / 100))}ng: \`${ping}ms\`\n`
-      + `💓 Heartbeat: \`${Math.round(message.client.ping)}ms\``);
+    return msg.edit(
+      `🏓 P${'o'.repeat(Math.ceil(ping / 100))}ng: \`${ping}ms\`\n` +
+        `💓 Heartbeat: \`${Math.round(message.client.ping)}ms\``,
+    );
   }
 };

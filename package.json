@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "test": "npm run lint",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "pretty": "prettier --write \"src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,12 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-eslint-comments": "^3.1.1",
     "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsdoc": "^7.2.3"
+    "eslint-plugin-jsdoc": "^7.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "1.18.2"
   },
   "engines": {
     "node": ">=10.0.0"
