@@ -27,4 +27,4 @@ Add any other context about the problem here.
 
 ---
 
-If you want to fix this bug, please open a draft pull request which references this issue.
+If you want to implement a fix for this bug, please open a draft pull request which references this issue.
