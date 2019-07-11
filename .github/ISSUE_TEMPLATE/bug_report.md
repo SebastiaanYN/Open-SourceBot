@@ -24,3 +24,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+---
+
+If you want to fix this bug, please open a draft pull request which references this issue.
