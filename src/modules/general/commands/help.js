@@ -47,7 +47,7 @@ module.exports = class extends Command {
 
       if (!command) {
         const embed = new RichEmbed()
-          .setTitle('Something when wrong!')
+          .setTitle('Something went wrong!')
           .setDescription('Invalid command provided, please try again!');
 
         message.channel.send(embed);
