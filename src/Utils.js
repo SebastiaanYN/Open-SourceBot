@@ -23,6 +23,28 @@ class Utils {
 
     return files;
   }
+
+  /**
+   * @description Stringifies an object to get a reader friendly string.
+   * @param {object} object - The object to stringify
+   * @param {string} [join] - Character to join the array with
+   * @returns {string} Stringified object
+   */
+  static stringify(object, join) {
+    if (typeof object === 'boolean') {
+      return object ? 'Yes' : 'No';
+    }
+    if (typeof object === 'object') {
+      if (Array.isArray(object)) {
+        if (object.length > 0) {
+          return object.join(join || ', ');
+        }
+        return 'None';
+      }
+      return JSON.stringify(object, null, 2);
+    }
+    return String(object);
+  }
 }
 
 module.exports = Utils;
