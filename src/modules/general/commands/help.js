@@ -8,7 +8,7 @@ module.exports = class extends Command {
       aliases: ['h', 'commands', 'cmds'],
       info: 'Show all the commands or info about a specific command.',
       usage: 'help [command]',
-      guildOnly: false
+      guildOnly: false,
     });
 
     this.commandHandler = commandHandler;
