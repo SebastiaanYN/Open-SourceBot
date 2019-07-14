@@ -1,4 +1,6 @@
 const { RichEmbed } = require('discord.js');
+const got = require('got');
+const Path = require('path');
 const { Command } = require('../../../handler');
 const Utils = require('../../../Utils.js');
 
@@ -14,7 +16,7 @@ module.exports = class extends Command {
     this.commandHandler = commandHandler;
   }
 
-  run(message, args) {
+  async run(message, args) {
     const prefix = this.commandHandler.prefix;
     let description;
 
@@ -53,14 +55,41 @@ module.exports = class extends Command {
         return;
       }
 
+      const contributors = [];
+      const path = Path.relative(
+        process.cwd(),
+        `${__dirname}/${command.name}.js`,
+      ).replace(/\\+/g, '/');
+
+      try {
+        const response = await got(
+          `https://api.github.com/repos/The-SourceCode/Open-SourceBot/commits?path=${path}`,
+        );
+
+        const body = JSON.parse(response.body);
+        body.forEach(commit => {
+          if (!contributors.includes(commit.author.login)) {
+            contributors.push(commit.author.login);
+          }
+        });
+      } catch (e) {
+        // Ignore
+      }
+
       description = `
         **Name:** ${command.name}
         **Usage:** ${prefix}${command.usage}
         **Info:** ${command.info}
         **Aliases:** ${Utils.stringify(command.aliases)}
         **Guild Only:** ${Utils.stringify(command.guildOnly)}
-        **Enabled:** ${Utils.stringify(command.guildOnly)}
+        **Enabled:** ${Utils.stringify(true) /* TODO: Implement enabled */}
         
+        **Contributors:** ${Utils.stringify(
+          contributors.map(
+            contributor =>
+              `[${contributor}](https://github.com/${contributor})`,
+          ),
+        )}
       `;
     }
 

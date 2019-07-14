@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/The-SourceCode/Open-SourceBot#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "got": "^9.6.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
