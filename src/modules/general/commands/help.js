@@ -8,8 +8,7 @@ module.exports = class extends Command {
       aliases: ['h', 'commands', 'cmds'],
       info: 'Show all the commands or info about a specific command.',
       usage: 'help [command]',
-      guildOnly: false,
-      contributors: ['Jacxk'],
+      guildOnly: false
     });
 
     this.commandHandler = commandHandler;
@@ -62,18 +61,13 @@ module.exports = class extends Command {
         **Guild Only:** ${Utils.stringify(command.guildOnly)}
         **Enabled:** ${Utils.stringify(command.guildOnly)}
         
-        **Contributors:** ${Utils.stringify(
-          command.contributors.map(
-            username => `[${username}](https://github.com/${username})`,
-          ),
-        )}
       `;
     }
 
     const embed = new RichEmbed()
       .setTitle('Need help? Here are you go!')
       .setDescription(
-        `${description}\n(**[]** *is optional*, **<>** *is required*)`,
+        `${description}\n(**[]** is optional, **<>** is required)`,
       );
 
     message.channel.send(embed);
