@@ -15,18 +15,17 @@ class Command extends Toggleable {
 
     this.name = name;
 
-    this.aliases = options.aliases || [];
-
-    if (!Array.isArray(this.aliases)) {
+    if (!Array.isArray(options.aliases)) {
       throw new TypeError('Aliases must be an array');
     }
-    if (this.aliases) {
-      this.aliases.forEach(alias => {
+    if (options.aliases) {
+      options.aliases.forEach(alias => {
         if (typeof alias !== 'string') {
           throw new TypeError('Aliases array must contain strings only');
         }
       });
     }
+    this.aliases = options.aliases || [];
 
     if (!(typeof options.info === 'string')) {
       throw new TypeError('Info must be a string');
