@@ -1,3 +1,5 @@
+const { stripIndents } = require('common-tags');
+
 const { Command } = require('../../../handler');
 
 module.exports = class extends Command {
@@ -19,8 +21,10 @@ module.exports = class extends Command {
     }
 
     return msg.edit(
-      `🏓 P${'o'.repeat(Math.ceil(ping / 100))}ng: \`${ping}ms\`\n` +
-        `💓 Heartbeat: \`${Math.round(message.client.ping)}ms\``,
+      stripIndents`
+      🏓 P${'o'.repeat(Math.ceil(ping / 100))}ng: \`${ping}ms\`
+      💓 Heartbeat: \`${Math.round(message.client.ping)}ms\`
+      `,
     );
   }
 };
