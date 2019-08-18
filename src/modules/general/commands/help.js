@@ -1,11 +1,11 @@
-const {RichEmbed} = require('discord.js');
+const { RichEmbed } = require('discord.js');
 const got = require('got');
 const Path = require('path');
-const {Command} = require('../../../handler');
+const { Command } = require('../../../handler');
 const Utils = require('../../../Utils.js');
 
 module.exports = class extends Command {
-  constructor({commandHandler}) {
+  constructor({ commandHandler }) {
     super('help', {
       aliases: ['h', 'commands', 'cmds'],
       info: 'Show all the commands or info about a specific command.',
@@ -23,18 +23,18 @@ module.exports = class extends Command {
     if (args.length === 0) {
       description = `
         __Features:__
-        ${Array.from(this.commandHandler.features).map(
-            ([name, feature]) =>
-              `**${name}** - ${feature.commands.join(', ')}`
-          ).join('\n')
-        }
+        ${Array.from(this.commandHandler.features)
+          .map(
+            ([name, feature]) => `**${name}** - ${feature.commands.join(', ')}`,
+          )
+          .join('\n')}
         
         __Commands:__
-        ${
-          Array.from(this.commandHandler.commands).map(
-            ([, command]) => `**${prefix}${command.usage}** - ${command.info}`
-          ).join('\n')
-        }
+        ${Array.from(this.commandHandler.commands)
+          .map(
+            ([, command]) => `**${prefix}${command.usage}** - ${command.info}`,
+          )
+          .join('\n')}
       `;
     } else {
       let command = this.commandHandler.commands.get(args[0]);
@@ -81,11 +81,12 @@ module.exports = class extends Command {
         **Guild Only:** ${Utils.boolToString(command.guildOnly)}
         **Enabled:** ${Utils.boolToString(true) /* TODO: Implement enabled */}
         
-        **Contributors:** ${contributors.map(
+        **Contributors:** ${contributors
+          .map(
             contributor =>
               `[${contributor}](https://github.com/${contributor})`,
-          ).join(', ')
-        }
+          )
+          .join(', ')}
       `;
     }
 
