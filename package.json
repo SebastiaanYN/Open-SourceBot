@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/The-SourceCode/Open-SourceBot#readme",
   "dependencies": {
+    "common-tags": "^1.8.0",
     "discord.js": "^11.5.1",
     "got": "^9.6.0"
   },
