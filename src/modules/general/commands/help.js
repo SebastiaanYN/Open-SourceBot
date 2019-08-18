@@ -1,11 +1,11 @@
-const { RichEmbed } = require('discord.js');
+const {RichEmbed} = require('discord.js');
 const got = require('got');
 const Path = require('path');
-const { Command } = require('../../../handler');
+const {Command} = require('../../../handler');
 const Utils = require('../../../Utils.js');
 
 module.exports = class extends Command {
-  constructor({ commandHandler }) {
+  constructor({commandHandler}) {
     super('help', {
       aliases: ['h', 'commands', 'cmds'],
       info: 'Show all the commands or info about a specific command.',
@@ -23,21 +23,18 @@ module.exports = class extends Command {
     if (args.length === 0) {
       description = `
         __Features:__
-        ${Utils.stringify(
-          Array.from(this.commandHandler.features).map(
+        ${Array.from(this.commandHandler.features).map(
             ([name, feature]) =>
-              `**${name}** - ${Utils.stringify(feature.commands)}`,
-          ),
-          '\n',
-        )}
+              `**${name}** - ${feature.commands.join(', ')}`
+          ).join('\n')
+        }
         
         __Commands:__
-        ${Utils.stringify(
+        ${
           Array.from(this.commandHandler.commands).map(
-            ([, command]) => `**${prefix}${command.usage}** - ${command.info}`,
-          ),
-          '\n',
-        )}
+            ([, command]) => `**${prefix}${command.usage}** - ${command.info}`
+          ).join('\n')
+        }
       `;
     } else {
       let command = this.commandHandler.commands.get(args[0]);
@@ -80,16 +77,15 @@ module.exports = class extends Command {
         **Name:** ${command.name}
         **Usage:** ${prefix}${command.usage}
         **Info:** ${command.info}
-        **Aliases:** ${Utils.stringify(command.aliases)}
-        **Guild Only:** ${Utils.stringify(command.guildOnly)}
-        **Enabled:** ${Utils.stringify(true) /* TODO: Implement enabled */}
+        **Aliases:** ${command.aliases.join(', ')}
+        **Guild Only:** ${Utils.boolToString(command.guildOnly)}
+        **Enabled:** ${Utils.boolToString(true) /* TODO: Implement enabled */}
         
-        **Contributors:** ${Utils.stringify(
-          contributors.map(
+        **Contributors:** ${contributors.map(
             contributor =>
               `[${contributor}](https://github.com/${contributor})`,
-          ),
-        )}
+          ).join(', ')
+        }
       `;
     }
 

@@ -25,25 +25,15 @@ class Utils {
   }
 
   /**
-   * @description Stringifies an object to get a reader friendly string.
-   * @param {object} object - The object to stringify
-   * @param {string} [join] - Character to join the array with
-   * @returns {string} Stringified object
+   * @description Makes a boolean object Yes or No.
+   * @param {boolean} bool - The boolean to stringify.
+   * @returns {string} Boolean as Yes or No, accordingly.
    */
-  static stringify(object, join) {
-    if (typeof object === 'boolean') {
-      return object ? 'Yes' : 'No';
+  static boolToString(bool) {
+    if (typeof bool === 'boolean') {
+      return bool ? 'Yes' : 'No';
     }
-    if (typeof object === 'object') {
-      if (Array.isArray(object)) {
-        if (object.length > 0) {
-          return object.join(join || ', ');
-        }
-        return 'None';
-      }
-      return JSON.stringify(object, null, 2);
-    }
-    return String(object);
+    return String(bool);
   }
 }
 
