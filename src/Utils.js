@@ -23,6 +23,18 @@ class Utils {
 
     return files;
   }
+
+  /**
+   * @description Makes a boolean object Yes or No.
+   * @param {boolean} bool - The boolean to stringify.
+   * @returns {string} Boolean as Yes or No, accordingly.
+   */
+  static boolToString(bool) {
+    if (typeof bool === 'boolean') {
+      return bool ? 'Yes' : 'No';
+    }
+    return String(bool);
+  }
 }
 
 module.exports = Utils;
