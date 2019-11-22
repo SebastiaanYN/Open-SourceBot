@@ -1,4 +1,4 @@
-const { Client } = require('discord.js');
+const { Client, Collection } = require('discord.js');
 
 const Feature = require('./Feature.js');
 const Command = require('./Command.js');
@@ -204,6 +204,31 @@ class Handler {
         message.channel.send('This command is only available in guilds');
         return;
       }
+
+      const cooldowns = new Collection();
+      if (!cooldowns.has(command.name)) {
+        cooldowns.set(command.name, new Collection());
+      }
+
+      const now = Date.now();
+      const timestamps = cooldowns.get(command.name);
+      const cooldownAmount = (command.cooldown || 2) * 1000; // change the deault value to whatever you'd like.
+
+      if (timestamps.has(message.author.id)) {
+        const expirationTime =
+          timestamps.get(message.author.id) + cooldownAmount;
+        if (now < expirationTime) {
+          const timeLeft = (expirationTime - now) / 1000;
+          return message.channel.send(
+            `${message.author.username}, please wait for ${timeLeft.toFixed(
+              1,
+            )}s before reusing the ${command.name} command`,
+          );
+        }
+      }
+
+      timestamps.set(message.author.id, now);
+      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
       try {
         await cmd.run(message, args);

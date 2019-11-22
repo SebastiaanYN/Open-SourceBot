@@ -39,6 +39,8 @@ class Command extends Toggleable {
       throw new TypeError('Guild only must be a boolean');
     }
     this.guildOnly = options.guildOnly;
+
+    this.cooldown = options.cooldown;
   }
 
   /**
