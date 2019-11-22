@@ -219,7 +219,7 @@ class Handler {
           timestamps.get(message.author.id) + cooldownAmount;
         if (now < expirationTime) {
           const timeLeft = (expirationTime - now) / 1000;
-          return message.channel.send(
+          message.channel.send(
             `${message.author.username}, please wait for ${timeLeft.toFixed(
               1,
             )}s before reusing the ${command.name} command`,
