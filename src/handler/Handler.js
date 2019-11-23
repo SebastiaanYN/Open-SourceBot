@@ -1,4 +1,4 @@
-const { Client, Collection } = require('discord.js');
+const { Client } = require('discord.js');
 
 const Feature = require('./Feature.js');
 const Command = require('./Command.js');
@@ -205,20 +205,16 @@ class Handler {
         return;
       }
 
-        const cooldowns = new Set();
-        if (cooldowns.has(message.author.id)) {
-          const timeLeft = (expirationTime - now) / 1000;
-          message.channel.send(
-            `${message.author.username}, please wait for ${timeLeft.toFixed(
-              1,
-            )}s before reusing the ${command.name} command`,
-          );
-          message.channel.send(`${message.author.username}, please wait until the cooldown gets over.`);
-        }
-        cooldowns.add(message.author.id);
-        setTimeout(() => {
-          cooldowns.delete(message.author.id);
-        }, (command.cooldowns.split() || 0) * 1000);
+      const cooldowns = new Set();
+      if (cooldowns.has(message.author.id)) {
+        message.channel.send(
+          `${message.author.username}, please wait for few seconds before reusing the ${command.name} command.`,
+        );
+      }
+      cooldowns.add(message.author.id);
+      setTimeout(() => {
+        cooldowns.delete(message.author.id);
+      }, (command.cooldown || 0) * 1000);
 
       try {
         await cmd.run(message, args);
