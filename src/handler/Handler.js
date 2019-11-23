@@ -205,30 +205,20 @@ class Handler {
         return;
       }
 
-      const cooldowns = new Collection();
-      if (!cooldowns.has(command.name)) {
-        cooldowns.set(command.name, new Collection());
-      }
-
-      const now = Date.now();
-      const timestamps = cooldowns.get(command.name);
-      const cooldownAmount = (command.cooldown || 2) * 1000; // change the deault value to whatever you'd like.
-
-      if (timestamps.has(message.author.id)) {
-        const expirationTime =
-          timestamps.get(message.author.id) + cooldownAmount;
-        if (now < expirationTime) {
+        const cooldowns = new Set();
+        if (cooldowns.has(message.author.id)) {
           const timeLeft = (expirationTime - now) / 1000;
           message.channel.send(
             `${message.author.username}, please wait for ${timeLeft.toFixed(
               1,
             )}s before reusing the ${command.name} command`,
           );
+          message.channel.send(`${message.author.username}, please wait until the cooldown gets over.`);
         }
-      }
-
-      timestamps.set(message.author.id, now);
-      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+        cooldowns.add(message.author.id);
+        setTimeout(() => {
+          cooldowns.delete(message.author.id);
+        }, (command.cooldowns.split() || 0) * 1000);
 
       try {
         await cmd.run(message, args);

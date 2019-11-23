@@ -40,6 +40,9 @@ class Command extends Toggleable {
     }
     this.guildOnly = options.guildOnly;
 
+    if (options.cooldown && typeof options.cooldown !== 'number') {
+      throw new TypeError('Cooldown must be a number.');
+    }
     this.cooldown = options.cooldown;
   }
 
