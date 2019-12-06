@@ -3,10 +3,11 @@ const moment = require('moment');
 const _active = new Collection();
 
 class Giveaway {
-  constructor({time, description, price, channelID, client}) {
+  constructor({time, description, price, winners, channelID, client}) {
     this._client = client;
     this._time = time;
     this._price = price;
+    this._winners = winners || 1;
     this._description = description;
     this._messageID = null;
     this._channelID = channelID;
@@ -42,9 +43,11 @@ class Giveaway {
   embed() {
     let duration = `Ends in **${moment.duration(this.getTimeLeft(), "ms").humanize()}**`;
     if (this.getTimeLeft() < 1) {
-      const winner = this._users[Math.floor(Math.random() * this._users.length)];
-      this._client.users.get(winner).send(`You wont the giveaway: **${this._price}** :tada: :tada:`);
-      duration = `**Giveaway ended**\nWinner is: <@${winner}>`;
+      const winners = this.drawWinners();
+      winners.forEach(winner => {
+        this._client.users.get(winner).send(`You wont the giveaway: **${this._price}** :tada: :tada:`);
+      });
+      duration = `**Giveaway ended**\nWinner: <@${winners.join(", ")}>`;
     } else if (this._paused) duration = '**Giveaway Paused**';
     return new RichEmbed()
       .setTitle(this._price)
@@ -52,7 +55,8 @@ class Giveaway {
         `
         ${this._description ? `\n${this._description}\n` : ''}
         ${duration}
-        *Users participating: ${this._users.length}*
+        Users participating: **${this._users.length}**
+        Total winners: **${this._winners}**
       `,
       )
       .setFooter('Click the reaction to enter!')
@@ -91,6 +95,21 @@ class Giveaway {
 
   enter(userID) {
     this._users.push(userID);
+  }
+
+  drawWinners() {
+    const winners = [];
+    if (this._winners && !isNaN(this._winners)) {
+      for (let i = 0; i < parseInt(this._winners); i++) {
+        const user = this._users[Math.floor(Math.random() * this._users.length)];
+        if (!winners.includes(`<@${user}>`)) winners.push(`<@${user}>`);
+        else i--;
+
+        if (this._users.length === i + 1) break;
+      }
+    }
+
+    return winners;
   }
 }
 

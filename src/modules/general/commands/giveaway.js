@@ -14,7 +14,7 @@ module.exports = class extends Command {
       aliases: ['ga'],
       info:
         'Wanna give things to people? Use this command to create giveaways.',
-      usage: 'giveaway "[time]" "[title]" "{description}"',
+      usage: 'giveaway "[time]" "[title]" "{description}" {winners}',
       guildOnly: false,
     });
 
@@ -36,6 +36,7 @@ module.exports = class extends Command {
       time: moment().add(time).toDate().getTime(),
       description,
       price,
+      winners: args[args.length - 1],
       channelID: message.channel.id,
       client: this.client
     });
