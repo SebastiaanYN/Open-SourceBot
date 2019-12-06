@@ -12,6 +12,7 @@ class Giveaway {
     this._channelID = channelID;
     this._interval = null;
     this._paused = false;
+    this._users = [];
     this._pausedTime = 0;
   }
 
@@ -40,18 +41,23 @@ class Giveaway {
 
   embed() {
     let duration = `Ends in **${moment.duration(this.getTimeLeft(), "ms").humanize()}**`;
-    if (this.getTimeLeft() < 1) duration = '**Giveaway ended**';
-    else if (this._paused) duration = '**Giveaway Paused**';
+    if (this.getTimeLeft() < 1) {
+      const winner = this._users[Math.floor(Math.random() * this._users.length)];
+      this._client.users.get(winner).send(`You wont the giveaway: **${this._price}** :tada: :tada:`);
+      duration = `**Giveaway ended**\nWinner is: <@${winner}>`;
+    } else if (this._paused) duration = '**Giveaway Paused**';
     return new RichEmbed()
       .setTitle(this._price)
       .setDescription(
         `
         ${this._description ? `\n${this._description}\n` : ''}
         ${duration}
+        *Users participating: ${this._users.length}*
       `,
       )
       .setFooter('Click the reaction to enter!')
-      .setTimestamp(this._time);
+      .setTimestamp(this._time)
+      .setColor(this.getTimeLeft() > 0 ? "green" : "red");
   }
 
   getTimeLeft() {
@@ -82,6 +88,13 @@ class Giveaway {
     this._pausedTime = 0;
     this.run();
   }
+
+  enter(userID) {
+    this._users.push(userID);
+  }
 }
 
-module.exports = Giveaway;
+module.exports = {
+  Giveaway,
+  activeGiveaways: _active
+};

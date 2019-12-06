@@ -6,7 +6,7 @@ const timestring = require('timestring');
 
 const {Command} = require('../../../handler');
 const Utils = require('../../../Utils.js');
-const Giveaway = require('../../Giveaway');
+const {Giveaway} = require('../../Giveaway');
 
 module.exports = class extends Command {
   constructor({client}) {
