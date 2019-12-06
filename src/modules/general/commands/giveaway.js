@@ -1,13 +1,15 @@
-const { RichEmbed } = require('discord.js');
-const { stripIndents } = require('common-tags');
+const {RichEmbed} = require('discord.js');
+const {stripIndents} = require('common-tags');
 const moment = require('moment');
 const timestring = require('timestring');
 
-const { Command } = require('../../../handler');
+
+const {Command} = require('../../../handler');
 const Utils = require('../../../Utils.js');
+const Giveaway = require('../../Giveaway');
 
 module.exports = class extends Command {
-  constructor() {
+  constructor({client}) {
     super('giveaway', {
       aliases: ['ga'],
       info:
@@ -15,6 +17,8 @@ module.exports = class extends Command {
       usage: 'giveaway "[time]" "[title]" "{description}"',
       guildOnly: false,
     });
+
+    this.client = client;
   }
 
   async run(message, args) {
@@ -28,18 +32,13 @@ module.exports = class extends Command {
     const price = gArgs[1];
     const description = gArgs[2];
 
-    const embed = new RichEmbed()
-      .setTitle(price)
-      .setDescription(
-        `
-        ${description ? `\n${description}\n` : ''}
-        Ends in **${moment.duration(time).humanize()}**
-      `,
-      )
-      .setFooter('Click the reaction to enter!')
-      .setTimestamp(Date.now() + time);
-
-    const gMsg = await message.channel.send(embed);
-    await gMsg.react('🎉');
+    const giveaway = new Giveaway({
+      time: moment().add(time).toDate().getTime(),
+      description,
+      price,
+      channelID: message.channel.id,
+      client: this.client
+    });
+    await giveaway.start();
   }
 };
