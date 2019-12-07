@@ -1,15 +1,12 @@
-const {RichEmbed} = require('discord.js');
-const {stripIndents} = require('common-tags');
 const moment = require('moment');
 const timestring = require('timestring');
 
-
-const {Command} = require('../../../handler');
+const { Command } = require('../../../handler');
 const Utils = require('../../../Utils.js');
-const {Giveaway} = require('../../Giveaway');
+const { Giveaway } = require('../../Giveaway');
 
 module.exports = class extends Command {
-  constructor({client}) {
+  constructor({ client }) {
     super('giveaway', {
       aliases: ['ga'],
       info:
@@ -21,7 +18,7 @@ module.exports = class extends Command {
     this.client = client;
   }
 
-  async run(message, args) {
+  run(message, args) {
     const gArgs = Utils.splitOnDivider(args.join(' '), '"');
 
     if (gArgs.length < 2) {
@@ -33,13 +30,16 @@ module.exports = class extends Command {
     const description = gArgs[2];
 
     const giveaway = new Giveaway({
-      time: moment().add(time).toDate().getTime(),
+      time: moment()
+        .add(time)
+        .toDate()
+        .getTime(),
       description,
       price,
       winners: args[args.length - 1],
       channelID: message.channel.id,
-      client: this.client
+      client: this.client,
     });
-    await giveaway.start();
+    return giveaway.start();
   }
 };

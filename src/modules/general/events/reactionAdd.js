@@ -1,5 +1,5 @@
-const {Event} = require('../../../handler');
-const {activeGiveaways} = require('../../Giveaway');
+const { Event } = require('../../../handler');
+const { activeGiveaways } = require('../../Giveaway');
 
 module.exports = class extends Event {
   constructor() {
@@ -12,7 +12,7 @@ module.exports = class extends Event {
     const message = reaction.message;
     if (activeGiveaways.has(message.id)) {
       const emoji = reaction.emoji;
-      if (emoji.name !== "🎉") return;
+      if (emoji.name !== '🎉') return;
 
       const giveaway = activeGiveaways.get(message.id);
       giveaway.enter(user.id);

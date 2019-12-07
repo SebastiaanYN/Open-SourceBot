@@ -56,5 +56,10 @@ module.exports = {
     'eslint-comments/no-unlimited-disable': 'error',
     'eslint-comments/no-unused-disable': 'error',
     'eslint-comments/no-unused-enable': 'error',
+
+    'no-plusplus': 'off',
+    'no-restricted-globals': "off",
+    'radix': "off",
+    "consistent-return": "off",
   },
 };
