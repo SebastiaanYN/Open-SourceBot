@@ -35,6 +35,34 @@ class Utils {
     }
     return String(bool);
   }
+
+  /**
+   * @description Takes a simple string and splits up the messages
+   * surrounded by the divider. (Strings not on divider will be ignored)
+   * @param {string} string - String to split.
+   * @param {string} divider - Where the string would be splitted.
+   * @returns {Array<string>} Array of string splitted.
+   */
+  static splitOnDivider(string, divider) {
+    let open = false;
+    let message = '';
+    const array = [];
+    for (let i = 0; i < string.length; i++) {
+      const char = string.charAt(i);
+      if (char === divider) {
+        if (!open) {
+          open = true;
+        } else {
+          open = false;
+          array.push(message);
+          message = '';
+        }
+      } else if (open) {
+        message += char;
+      }
+    }
+    return array;
+  }
 }
 
 module.exports = Utils;
