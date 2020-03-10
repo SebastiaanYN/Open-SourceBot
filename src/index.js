@@ -4,7 +4,7 @@
 
 if (Number(process.version.slice(1).split('.')[0]) < 10)
   throw new Error(
-    'Node 10.0.0 or higher is required. Update Node on your system.',
+    'Node 12.0.0 or higher is required. Update Node on your system.',
   );
 
 const path = require('path');
@@ -20,4 +20,4 @@ handler.load(path.join(__dirname, './modules'), {
   commandHandler: handler,
 });
 
-client.login(process.env.TOKEN);
+client.login('NjEwMDU5ODUzMjU5MzQxODI0.XmfQuA.7i4ppsUmnhkFV7zjNlE8_FXuOHE');

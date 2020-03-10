@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const got = require('got');
 const Path = require('path');
 const { Command } = require('../../../handler');
@@ -16,11 +16,11 @@ module.exports = class extends Command {
     this.commandHandler = commandHandler;
   }
 
-  async run(message, args) {
+  async run(message, [cmd]) {
     const prefix = this.commandHandler.prefix;
     let description;
 
-    if (args.length === 0) {
+    if (!cmd) {
       description = `
         __Features:__
         ${Array.from(this.commandHandler.features)
@@ -28,7 +28,7 @@ module.exports = class extends Command {
             ([name, feature]) => `**${name}** - ${feature.commands.join(', ')}`,
           )
           .join('\n')}
-        
+
         __Commands:__
         ${Array.from(this.commandHandler.commands)
           .map(
@@ -37,14 +37,14 @@ module.exports = class extends Command {
           .join('\n')}
       `;
     } else {
-      let command = this.commandHandler.commands.get(args[0]);
+      let command = this.commandHandler.commands.get(cmd);
 
       if (!command) {
-        command = this.commandHandler.aliases.get(args[0]);
+        command = this.commandHandler.aliases.get(cmd);
       }
 
       if (!command) {
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
           .setTitle('Something went wrong!')
           .setDescription('Invalid command provided, please try again!');
 
@@ -80,7 +80,7 @@ module.exports = class extends Command {
         **Aliases:** ${command.aliases.join(', ')}
         **Guild Only:** ${Utils.boolToString(command.guildOnly)}
         **Enabled:** ${Utils.boolToString(true) /* TODO: Implement enabled */}
-        
+
         **Contributors:** ${contributors
           .map(
             contributor =>
@@ -90,7 +90,7 @@ module.exports = class extends Command {
       `;
     }
 
-    const embed = new RichEmbed()
+    const embed = new MessageEmbed()
       .setTitle('Need help? Here are you go!')
       .setDescription(
         `${description}\n(**[]** is optional, **<>** is required)`,
