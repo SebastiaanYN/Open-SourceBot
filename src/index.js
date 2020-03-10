@@ -20,4 +20,4 @@ handler.load(path.join(__dirname, './modules'), {
   commandHandler: handler,
 });
 
-client.login('NjEwMDU5ODUzMjU5MzQxODI0.XmfQuA.7i4ppsUmnhkFV7zjNlE8_FXuOHE');
+client.login(process.env.TOKEN);
