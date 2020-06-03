@@ -21,7 +21,8 @@
   "dependencies": {
     "common-tags": "^1.8.0",
     "discord.js": "^11.5.1",
-    "got": "^9.6.0"
+    "got": "^9.6.0",
+    "novelcovid": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
