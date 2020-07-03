@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const got = require('got');
 const Path = require('path');
 const { Command } = require('../../../handler');
@@ -90,7 +90,7 @@ module.exports = class extends Command {
       `;
     }
 
-    const embed = new RichEmbed()
+    const embed = new MessageEmbed()
       .setTitle('Need help? Here are you go!')
       .setDescription(
         `${description}\n(**[]** is optional, **<>** is required)`,
